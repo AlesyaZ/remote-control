@@ -15,5 +15,5 @@ startWebSocket(wssPort);
 
 process.on('SIGINT', () => {
   console.log('Http server closed');
-  process.exit();
+  httpServer.close();
 });

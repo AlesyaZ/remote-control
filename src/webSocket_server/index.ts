@@ -26,4 +26,8 @@ export const startWebSocket = (PORT) => {
       console.log('WebSocket disconnected');
     });
   });
+  process.on('SIGINT', () => {
+    console.log('WebSocket closed');
+    wss.close();
+  });
 };
