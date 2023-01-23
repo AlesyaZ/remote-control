@@ -1,5 +1,5 @@
 import WebSocket, { WebSocketServer, createWebSocketStream } from 'ws';
-import { listenerAction } from '../http_server/listener';
+import { listenerAction } from '../commands/listener';
 
 export const startWebSocket = (PORT) => {
   const wss = new WebSocketServer({ port: PORT });
