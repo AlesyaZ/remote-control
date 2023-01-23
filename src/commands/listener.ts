@@ -28,6 +28,7 @@ export const listenerAction = async (navigat: string, coordinate: string[]) => {
       break;
     case 'mouse_position':
       command.push(await setPositionMouse());
+      console.log(`${navigat}`);
       break;
     case 'draw_circle':
       await createCircle(item);
@@ -41,9 +42,10 @@ export const listenerAction = async (navigat: string, coordinate: string[]) => {
       await createSquare(item);
       console.log(`${navigat}, ${Number(item)}px`);
       break;
-    // case 'prnt_scrn':
-    //   command.push(await makeScreen());
-    //   break;
+    case 'prnt_scrn':
+      command.push(await makeScreen());
+      console.log(`${navigat}`);
+      break;
   }
 
   return command.join(' ');
