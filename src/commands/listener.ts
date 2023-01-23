@@ -1,16 +1,13 @@
 import { down, left, mouse, right, up } from '@nut-tree/nut-js';
 import { createCircle } from './circle';
+import { setPositionMouse } from './position';
 import { createRectangle } from './rectangle';
 import { createSquare } from './square';
-
-export const getAction = async (navigat) => {
-  const { x, y } = await mouse.getPosition();
-  return `${navigat} ${x}px, ${y}px`;
-};
+import { makeScreen } from './printScreen';
 
 export const listenerAction = async (navigat: string, coordinate: string[]) => {
-  let result = [];
   const [...item] = coordinate;
+  const command = [navigat];
 
   switch (navigat) {
     case 'mouse_up':
@@ -29,6 +26,9 @@ export const listenerAction = async (navigat: string, coordinate: string[]) => {
       await mouse.move(right(Number(item)));
       console.log(`${navigat}, ${Number(item)}px`);
       break;
+    case 'mouse_position':
+      command.push(await setPositionMouse());
+      break;
     case 'draw_circle':
       await createCircle(item);
       console.log(`${navigat}, ${Number(item)}px`);
@@ -41,8 +41,10 @@ export const listenerAction = async (navigat: string, coordinate: string[]) => {
       await createSquare(item);
       console.log(`${navigat}, ${Number(item)}px`);
       break;
+    // case 'prnt_scrn':
+    //   command.push(await makeScreen());
+    //   break;
   }
-  const position = await getAction(navigat);
-  result.push(position);
-  return result.join('');
+
+  return command.join(' ');
 };
