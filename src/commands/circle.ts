@@ -28,5 +28,4 @@ export const createCircle = async (coordinate: string[]) => {
   }
 
   await mouse.releaseButton(Button.LEFT);
-  return `draw_circle`;
 };
