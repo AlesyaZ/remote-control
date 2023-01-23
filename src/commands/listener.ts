@@ -1,5 +1,6 @@
 import { down, left, mouse, right, up } from '@nut-tree/nut-js';
 import { createCircle } from './circle';
+import { createSquare } from './square';
 
 export const getAction = async (navigat) => {
   const { x, y } = await mouse.getPosition();
@@ -24,7 +25,13 @@ export const listenerAction = async (navigat: string, coordinate: string[]) => {
       await mouse.move(right(Number(item)));
       break;
     case 'draw_circle':
-      await createCircle(coordinate);
+      await createCircle(item);
+      break;
+    // case 'draw_rectangle':
+    //   await (item);
+    //   break;
+    case 'draw_square':
+      await createSquare(item);
       break;
   }
 
